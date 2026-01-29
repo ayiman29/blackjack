@@ -123,20 +123,46 @@ def game(bet, cards = cards):
 #2 -> Player blackjack
 #3 -> push
 
+credit = 1000
+bet = print("WELCOME TO BLACKJACK!!!!")
+sleep(.5)
+flag = True
 
-bet = int(input("WELCOME TO BLACKJACK!!!! PLEASE PLACE YOUR BET: "))
-sleep(1)
-res = game(bet)
-sleep(1)
-if res == 0:
-    print("YOU HAVE LOST;((")
-    print(f"LOST: {bet}$")
-elif res == 1:
-    print("YOU HAVE WON!!!")
-    print(f"WON: {bet}$")
-elif res == 2:
-    print("$$$BLACKJACK$$$")
-    print(f"WON: {bet*(1.5)}$")
-else:
-    print("It's a Push!")
+while flag:
+    print("Your current Credit:", credit)
+    bet = int(input("Place your bet: "))
+    if bet > credit:
+        print("Exceeded credit limit!")
+        break
+    res = game(bet)
+    sleep(1)
+    if res == 0:
+        print("YOU HAVE LOST;((")
+        print(f"LOST: {bet}$")
+        credit = credit - bet
+    elif res == 1:
+        print("YOU HAVE WON!!!")
+        print(f"WON: {bet}$")
+        credit += bet
+    elif res == 2:
+        print("$$$BLACKJACK$$$")
+        print(f"WON: {bet*(1.5)}$")
+        credit += (bet*(1.5))
+    else:
+        print("It's a Push!")
+    print()
+    if credit > 0:
+        print("Do you want to continue?")
+        x = input("Y/N: ").lower()
+        if x == "y":
+            flag = True
+        else:
+            flag = False
+            print("Thanks for playing!")
+            print("Your current credit:", credit)
+            print("Your earning:", credit-1000)
+        
+    else:
+        print("You don't have any credit;(")
+        flag = False
 

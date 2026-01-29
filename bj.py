@@ -40,6 +40,7 @@ def game(bet, cards = cards):
     print()
     sleep(1)
     print(f"Dealer's cards are [{dealer[0]}, XX]")
+    print()
     flag = "H"
     player_blackjack = False
     dealer_blackjack = False
@@ -59,7 +60,7 @@ def game(bet, cards = cards):
                     if player_score <= 21:
                         break
         if player_score > 21:
-            print("Your score:", score)
+            print("Your score:", player_score)
             return 0
         elif player_score == 21:
             print("Your Score: 21!!!!")
@@ -89,6 +90,10 @@ def game(bet, cards = cards):
         while dealer_score > 21 and A > 0:
             dealer_score -= 10
             A -= 1
+        if player_blackjack and dealer_score != 21:
+            return 2
+        elif player_score == 21 and dealer_score != 21:
+            return 1
         if dealer_score == 21 and len(dealer) == 2:
             dealer_blackjack = True
         print("Dealer Score:", dealer_score)
@@ -96,7 +101,7 @@ def game(bet, cards = cards):
             break
         dealer.append(pick(cards))
     
-    if dealer_blackjack > 21:
+    if dealer_score > 21:
         return 1
     if dealer_blackjack:
         if player_blackjack:

@@ -1,16 +1,16 @@
 import random
 from time import sleep
 cards_global = {'A': 4, 'K': 4, 'Q': 4, 'J': 4, '2': 4, '3': 4, '4': 4, '5': 4, '6': 4, '7': 4, '8': 4, '9': 4, '10': 4}
-cards = cards_global
+cards = cards_global.copy()
 def pick(cards):
     total = sum(list(cards.values()))
-    if total < 39:
+    if total < 15: #cut-card = 15
         reshuffle(cards)
         total = sum(list(cards.values()))
     value = random.randint(1, total)
     sumx = 0
     idx = 0
-    while sumx <= total:
+    while idx < len(cards):
         sumx += cards[list(cards.keys())[idx]]
         if value <= sumx:
             cards[list(cards.keys())[idx]] -= 1

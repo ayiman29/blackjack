@@ -92,8 +92,6 @@ def game(bet, cards = cards):
             A -= 1
         if player_blackjack and dealer_score != 21:
             return 2
-        elif player_score == 21 and dealer_score != 21:
-            return 1
         if dealer_score == 21 and len(dealer) == 2:
             dealer_blackjack = True
         print("Dealer Score:", dealer_score)

@@ -13,3 +13,5 @@ cd blackjack
 ```bash
 python bj.py #or python3
 ```
+
+you know the drill!
